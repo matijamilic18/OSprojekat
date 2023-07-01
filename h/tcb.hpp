@@ -20,16 +20,17 @@ public:
 
     uint64 getTimeSlice() const { return timeSlice; }
 
-    using Body = void (*)();
+    using Body = void (*)(void *);
 
-    static TCB *createThread(Body body);
+    static TCB *createThread(Body body, void* arg);
 
     static void yield();
 
     static TCB *running;
 
 private:
-    TCB(Body body, uint64 timeSlice) :
+    TCB(Body body, void* arg,uint64 timeSlice) :
+            arg(arg),
             body(body),
             stack(body != nullptr ? new uint64[STACK_SIZE] : nullptr),
             context({(uint64) &threadWrapper,
@@ -46,7 +47,7 @@ private:
         uint64 ra;
         uint64 sp;
     };
-
+    void* arg;
     Body body;
     uint64 *stack;
     Context context;

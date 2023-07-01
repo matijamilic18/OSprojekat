@@ -5,7 +5,6 @@
 #include "../h/syscall_c.hpp"
 #include "../lib/hw.h"
 
-const uint16 SCALL_THREAD_CREATE = 0x11;
 
 
 int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {

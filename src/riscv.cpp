@@ -5,7 +5,7 @@
 #include "../h/riscv.hpp"
 #include "../h/tcb.hpp"
 #include "../lib/console.h"
-
+#include "../h/syscall_c.hpp"
 void Riscv::popSppSpie()
 {
     __asm__ volatile("csrw sepc, ra");
@@ -22,10 +22,26 @@ void Riscv::handleSupervisorTrap()
         // interrupt: no; cause code: environment call from U-mode(8) or S-mode(9)
         sepc= sepc +4;
         uint64 CODE,arg1,arg2,arg3;
+        uint8 rett;
         __asm__ volatile("mv %0, a0" : "=r" (CODE));
         __asm__ volatile("mv %0, a1" : "=r" (arg1));
         __asm__ volatile("mv %0, a2" : "=r" (arg2));
         __asm__ volatile("mv %0, a3" : "=r" (arg3));
+        thread_t* handle;
+
+        if (CODE == SCALL_THREAD_CREATE){
+            handle = (thread_t*) arg1;
+
+            if (handle != nullptr){
+                *handle = TCB::createThread(reinterpret_cast<void (*) (void*)>(arg2),(void*)arg3);
+
+                rett=0;
+            }else {
+                rett=-1;
+            }
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
+        }
 
 
 
