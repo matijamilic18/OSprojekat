@@ -22,7 +22,7 @@ void Riscv::handleSupervisorTrap()
         // interrupt: no; cause code: environment call from U-mode(8) or S-mode(9)
         sepc= sepc +4;
         uint64 CODE,arg1,arg2,arg3;
-        uint8 rett;
+        uint64 rett;
         __asm__ volatile("mv %0, a0" : "=r" (CODE));
         __asm__ volatile("mv %0, a1" : "=r" (arg1));
         __asm__ volatile("mv %0, a2" : "=r" (arg2));
@@ -41,14 +41,20 @@ void Riscv::handleSupervisorTrap()
             }
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
 
+        }else if (CODE == SCALL_THREAD_DISPATCH){
+            TCB::timeSliceCounter=0;
+            TCB::dispatch();
+
+            w_sepc(sepc);
+            w_sstatus(sstatus);
         }
 
 
 
-        TCB::timeSliceCounter = 0;
+        /*TCB::timeSliceCounter = 0;
         TCB::dispatch();
         w_sstatus(sstatus);
-        w_sepc(sepc);
+        w_sepc(sepc);*/
     }
     else if (scause == 0x8000000000000001UL)
     {
@@ -57,12 +63,8 @@ void Riscv::handleSupervisorTrap()
         TCB::timeSliceCounter++;
         if (TCB::timeSliceCounter >= TCB::running->getTimeSlice())
         {
-            uint64 volatile sepc = r_sepc();
-            uint64 volatile sstatus = r_sstatus();
-            TCB::timeSliceCounter = 0;
-            TCB::dispatch();
-            w_sstatus(sstatus);
-            w_sepc(sepc);
+
+            thread_dispatch();
         }
     }
     else if (scause == 0x8000000000000009UL)

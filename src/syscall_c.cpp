@@ -21,3 +21,9 @@ int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
     return  retValue;
 
 }
+
+void thread_dispatch() {
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_THREAD_DISPATCH));
+    __asm__ volatile ("ecall");
+
+}

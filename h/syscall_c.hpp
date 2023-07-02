@@ -8,6 +8,8 @@
 #include "../lib/hw.h"
 
 const uint16 SCALL_THREAD_CREATE = 0x11;
+const uint16 SCALL_THREAD_EXIT = 0x12;
+const uint16 SCALL_THREAD_DISPATCH= 0x13;
 
 class TCB;
 typedef TCB* thread_t;
