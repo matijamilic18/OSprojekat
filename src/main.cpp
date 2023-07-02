@@ -9,6 +9,8 @@
 #include "../h/syscall_c.hpp"
 int main()
 {
+    Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
+
     TCB *threads[5];
 
     thread_create(&threads[0], nullptr, nullptr);
@@ -23,15 +25,15 @@ int main()
     thread_create(&threads[4], reinterpret_cast<void (*)(void *)>(workerBodyD), nullptr);
     printString("ThreadD created\n");
 
-    Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
     Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
+
 
     while (!(threads[1]->isFinished() &&
              threads[2]->isFinished() &&
              threads[3]->isFinished() &&
              threads[4]->isFinished()))
     {
-        TCB::yield();
+        thread_dispatch();
     }
 
     for (auto &thread: threads)
