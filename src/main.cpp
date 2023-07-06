@@ -7,7 +7,7 @@
 #include "../h/print.hpp"
 #include "../h/riscv.hpp"
 #include "../h/syscall_c.hpp"
-int main()
+void main()
 {
     Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
 
@@ -28,7 +28,7 @@ int main()
     Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
 
 
-    while (!(threads[1]->isFinished() &&
+   while (!(threads[1]->isFinished() &&
              threads[2]->isFinished() &&
              threads[3]->isFinished() &&
              threads[4]->isFinished()))
@@ -36,11 +36,11 @@ int main()
         thread_dispatch();
     }
 
-    for (auto &thread: threads)
-    {
-        delete thread;
-    }
+   for (int i=1;i<5;i++){
+       delete threads[i];
+   }
+
     printString("Finished\n");
 
-    return 0;
+    return;
 }

@@ -4,6 +4,7 @@
 
 #include "../h/tcb.hpp"
 #include "../h/riscv.hpp"
+#include "../h/syscall_c.hpp"
 
 TCB *TCB::running = nullptr;
 
@@ -16,7 +17,7 @@ TCB *TCB::createThread(Body body, void* arg)
 
 void TCB::yield()
 {
-    __asm__ volatile ("ecall");
+    thread_dispatch();
 }
 
 void TCB::dispatch()
@@ -26,6 +27,8 @@ void TCB::dispatch()
     running = Scheduler::get();
 
     TCB::contextSwitch(&old->context, &running->context);
+
+
 }
 
 void TCB::threadWrapper()

@@ -1,4 +1,4 @@
-GAS LISTING /tmp/ccwgyaGI.s 			page 1
+GAS LISTING /tmp/cckm6Pyi.s 			page 1
 
 
    1              		.file	"syscall_c.cpp"
@@ -58,7 +58,7 @@ GAS LISTING /tmp/ccwgyaGI.s 			page 1
   42              	# 14 "src/syscall_c.cpp" 1
   15              	
   16:src/syscall_c.cpp **** 
-GAS LISTING /tmp/ccwgyaGI.s 			page 2
+GAS LISTING /tmp/cckm6Pyi.s 			page 2
 
 
   17:src/syscall_c.cpp ****     __asm__ volatile ("ecall");
@@ -118,7 +118,7 @@ GAS LISTING /tmp/ccwgyaGI.s 			page 1
   28              	    __asm__ volatile ("ecall");
   88              		mv a0, a5
   89              	# 0 "" 2
-GAS LISTING /tmp/ccwgyaGI.s 			page 3
+GAS LISTING /tmp/cckm6Pyi.s 			page 3
 
 
   90              		.loc 1 28 5 is_stmt 1
@@ -141,98 +141,98 @@ GAS LISTING /tmp/ccwgyaGI.s 			page 1
  106              	.Letext0:
  107              		.file 2 "src/../h/../lib/hw.h"
  108              		.file 3 "src/../h/syscall_c.hpp"
-GAS LISTING /tmp/ccwgyaGI.s 			page 4
+GAS LISTING /tmp/cckm6Pyi.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscall_c.cpp
-     /tmp/ccwgyaGI.s:9      .text:0000000000000000 _Z13thread_createPP3TCBPFvPvES2_
-     /tmp/ccwgyaGI.s:13     .text:0000000000000000 .L0 
-     /tmp/ccwgyaGI.s:15     .text:0000000000000000 .L0 
-     /tmp/ccwgyaGI.s:16     .text:0000000000000004 .L0 
-     /tmp/ccwgyaGI.s:18     .text:0000000000000008 .L0 
-     /tmp/ccwgyaGI.s:20     .text:000000000000000c .L0 
-     /tmp/ccwgyaGI.s:22     .text:000000000000000c .L0 
+     /tmp/cckm6Pyi.s:9      .text:0000000000000000 _Z13thread_createPP3TCBPFvPvES2_
+     /tmp/cckm6Pyi.s:13     .text:0000000000000000 .L0 
+     /tmp/cckm6Pyi.s:15     .text:0000000000000000 .L0 
+     /tmp/cckm6Pyi.s:16     .text:0000000000000004 .L0 
+     /tmp/cckm6Pyi.s:18     .text:0000000000000008 .L0 
+     /tmp/cckm6Pyi.s:20     .text:000000000000000c .L0 
+     /tmp/cckm6Pyi.s:22     .text:000000000000000c .L0 
    src/syscall_c.cpp:11     .text:000000000000000c .L0 
-     /tmp/ccwgyaGI.s:28     .text:0000000000000010 .L0 
+     /tmp/cckm6Pyi.s:28     .text:0000000000000010 .L0 
    src/syscall_c.cpp:12     .text:0000000000000010 .L0 
-     /tmp/ccwgyaGI.s:33     .text:0000000000000014 .L0 
+     /tmp/cckm6Pyi.s:33     .text:0000000000000014 .L0 
    src/syscall_c.cpp:13     .text:0000000000000014 .L0 
-     /tmp/ccwgyaGI.s:38     .text:0000000000000018 .L0 
-     /tmp/ccwgyaGI.s:40     .text:0000000000000018 .L0 
-     /tmp/ccwgyaGI.s:46     .text:0000000000000020 .L0 
+     /tmp/cckm6Pyi.s:38     .text:0000000000000018 .L0 
+     /tmp/cckm6Pyi.s:40     .text:0000000000000018 .L0 
+     /tmp/cckm6Pyi.s:46     .text:0000000000000020 .L0 
    src/syscall_c.cpp:17     .text:0000000000000020 .L0 
-     /tmp/ccwgyaGI.s:51     .text:0000000000000024 .L0 
-     /tmp/ccwgyaGI.s:52     .text:0000000000000024 .L0 
+     /tmp/cckm6Pyi.s:51     .text:0000000000000024 .L0 
+     /tmp/cckm6Pyi.s:52     .text:0000000000000024 .L0 
    src/syscall_c.cpp:20     .text:0000000000000024 .L0 
-     /tmp/ccwgyaGI.s:58     .text:0000000000000028 .L0 
-     /tmp/ccwgyaGI.s:60     .text:0000000000000028 .L0 
-     /tmp/ccwgyaGI.s:62     .text:0000000000000030 .L0 
-     /tmp/ccwgyaGI.s:63     .text:0000000000000030 .L0 
-     /tmp/ccwgyaGI.s:65     .text:0000000000000034 .L0 
-     /tmp/ccwgyaGI.s:67     .text:0000000000000038 .L0 
-     /tmp/ccwgyaGI.s:73     .text:0000000000000038 _Z15thread_dispatchv
-     /tmp/ccwgyaGI.s:76     .text:0000000000000038 .L0 
-     /tmp/ccwgyaGI.s:77     .text:0000000000000038 .L0 
-     /tmp/ccwgyaGI.s:78     .text:000000000000003c .L0 
-     /tmp/ccwgyaGI.s:80     .text:0000000000000040 .L0 
-     /tmp/ccwgyaGI.s:82     .text:0000000000000044 .L0 
-     /tmp/ccwgyaGI.s:84     .text:0000000000000044 .L0 
-     /tmp/ccwgyaGI.s:85     .text:0000000000000044 .L0 
-     /tmp/ccwgyaGI.s:91     .text:000000000000004c .L0 
+     /tmp/cckm6Pyi.s:58     .text:0000000000000028 .L0 
+     /tmp/cckm6Pyi.s:60     .text:0000000000000028 .L0 
+     /tmp/cckm6Pyi.s:62     .text:0000000000000030 .L0 
+     /tmp/cckm6Pyi.s:63     .text:0000000000000030 .L0 
+     /tmp/cckm6Pyi.s:65     .text:0000000000000034 .L0 
+     /tmp/cckm6Pyi.s:67     .text:0000000000000038 .L0 
+     /tmp/cckm6Pyi.s:73     .text:0000000000000038 _Z15thread_dispatchv
+     /tmp/cckm6Pyi.s:76     .text:0000000000000038 .L0 
+     /tmp/cckm6Pyi.s:77     .text:0000000000000038 .L0 
+     /tmp/cckm6Pyi.s:78     .text:000000000000003c .L0 
+     /tmp/cckm6Pyi.s:80     .text:0000000000000040 .L0 
+     /tmp/cckm6Pyi.s:82     .text:0000000000000044 .L0 
+     /tmp/cckm6Pyi.s:84     .text:0000000000000044 .L0 
+     /tmp/cckm6Pyi.s:85     .text:0000000000000044 .L0 
+     /tmp/cckm6Pyi.s:91     .text:000000000000004c .L0 
    src/syscall_c.cpp:28     .text:000000000000004c .L0 
-     /tmp/ccwgyaGI.s:97     .text:0000000000000050 .L0 
-     /tmp/ccwgyaGI.s:98     .text:0000000000000054 .L0 
-     /tmp/ccwgyaGI.s:99     .text:0000000000000054 .L0 
-     /tmp/ccwgyaGI.s:101    .text:0000000000000058 .L0 
-     /tmp/ccwgyaGI.s:103    .text:000000000000005c .L0 
-     /tmp/ccwgyaGI.s:109    .text:000000000000005c .L0 
-     /tmp/ccwgyaGI.s:344    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/ccwgyaGI.s:703    .debug_str:0000000000000163 .LASF25
-     /tmp/ccwgyaGI.s:693    .debug_str:000000000000010e .LASF26
-     /tmp/ccwgyaGI.s:681    .debug_str:00000000000000a5 .LASF27
-     /tmp/ccwgyaGI.s:5      .text:0000000000000000 .Ltext0
-     /tmp/ccwgyaGI.s:106    .text:000000000000005c .Letext0
-     /tmp/ccwgyaGI.s:657    .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/ccwgyaGI.s:659    .debug_str:0000000000000000 .LASF0
-     /tmp/ccwgyaGI.s:701    .debug_str:0000000000000150 .LASF1
-     /tmp/ccwgyaGI.s:687    .debug_str:00000000000000d8 .LASF2
-     /tmp/ccwgyaGI.s:713    .debug_str:000000000000026a .LASF3
-     /tmp/ccwgyaGI.s:675    .debug_str:000000000000006f .LASF4
-     /tmp/ccwgyaGI.s:671    .debug_str:000000000000004a .LASF5
-     /tmp/ccwgyaGI.s:665    .debug_str:000000000000002a .LASF6
-GAS LISTING /tmp/ccwgyaGI.s 			page 5
+     /tmp/cckm6Pyi.s:97     .text:0000000000000050 .L0 
+     /tmp/cckm6Pyi.s:98     .text:0000000000000054 .L0 
+     /tmp/cckm6Pyi.s:99     .text:0000000000000054 .L0 
+     /tmp/cckm6Pyi.s:101    .text:0000000000000058 .L0 
+     /tmp/cckm6Pyi.s:103    .text:000000000000005c .L0 
+     /tmp/cckm6Pyi.s:109    .text:000000000000005c .L0 
+     /tmp/cckm6Pyi.s:344    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/cckm6Pyi.s:703    .debug_str:0000000000000163 .LASF25
+     /tmp/cckm6Pyi.s:693    .debug_str:000000000000010e .LASF26
+     /tmp/cckm6Pyi.s:681    .debug_str:00000000000000a5 .LASF27
+     /tmp/cckm6Pyi.s:5      .text:0000000000000000 .Ltext0
+     /tmp/cckm6Pyi.s:106    .text:000000000000005c .Letext0
+     /tmp/cckm6Pyi.s:657    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/cckm6Pyi.s:659    .debug_str:0000000000000000 .LASF0
+     /tmp/cckm6Pyi.s:701    .debug_str:0000000000000150 .LASF1
+     /tmp/cckm6Pyi.s:687    .debug_str:00000000000000d8 .LASF2
+     /tmp/cckm6Pyi.s:713    .debug_str:000000000000026a .LASF3
+     /tmp/cckm6Pyi.s:675    .debug_str:000000000000006f .LASF4
+     /tmp/cckm6Pyi.s:671    .debug_str:000000000000004a .LASF5
+     /tmp/cckm6Pyi.s:665    .debug_str:000000000000002a .LASF6
+GAS LISTING /tmp/cckm6Pyi.s 			page 5
 
 
-     /tmp/ccwgyaGI.s:673    .debug_str:000000000000005c .LASF7
-     /tmp/ccwgyaGI.s:699    .debug_str:000000000000013d .LASF8
-     /tmp/ccwgyaGI.s:711    .debug_str:000000000000025a .LASF9
-     /tmp/ccwgyaGI.s:661    .debug_str:000000000000000d .LASF10
-     /tmp/ccwgyaGI.s:663    .debug_str:000000000000001b .LASF11
-     /tmp/ccwgyaGI.s:705    .debug_str:0000000000000227 .LASF12
-     /tmp/ccwgyaGI.s:667    .debug_str:0000000000000031 .LASF13
-     /tmp/ccwgyaGI.s:715    .debug_str:0000000000000271 .LASF14
-     /tmp/ccwgyaGI.s:685    .debug_str:00000000000000cc .LASF15
-     /tmp/ccwgyaGI.s:697    .debug_str:0000000000000127 .LASF16
-     /tmp/ccwgyaGI.s:691    .debug_str:00000000000000f8 .LASF17
-     /tmp/ccwgyaGI.s:721    .debug_str:00000000000002a6 .LASF18
-     /tmp/ccwgyaGI.s:689    .debug_str:00000000000000e6 .LASF19
-     /tmp/ccwgyaGI.s:709    .debug_str:0000000000000244 .LASF20
-     /tmp/ccwgyaGI.s:683    .debug_str:00000000000000c3 .LASF21
-     /tmp/ccwgyaGI.s:719    .debug_str:0000000000000296 .LASF28
-     /tmp/ccwgyaGI.s:717    .debug_str:0000000000000281 .LASF29
-     /tmp/ccwgyaGI.s:74     .text:0000000000000038 .LFB1
-     /tmp/ccwgyaGI.s:104    .text:000000000000005c .LFE1
-     /tmp/ccwgyaGI.s:707    .debug_str:0000000000000236 .LASF30
-     /tmp/ccwgyaGI.s:677    .debug_str:0000000000000076 .LASF31
-     /tmp/ccwgyaGI.s:10     .text:0000000000000000 .LFB0
-     /tmp/ccwgyaGI.s:68     .text:0000000000000038 .LFE0
-     /tmp/ccwgyaGI.s:695    .debug_str:0000000000000120 .LASF22
-     /tmp/ccwgyaGI.s:630    .debug_loc:0000000000000000 .LLST0
-     /tmp/ccwgyaGI.s:679    .debug_str:0000000000000097 .LASF23
-     /tmp/ccwgyaGI.s:669    .debug_str:0000000000000041 .LASF24
-     /tmp/ccwgyaGI.s:14     .text:0000000000000000 .LVL0
-     /tmp/ccwgyaGI.s:56     .text:0000000000000028 .LVL1
-     /tmp/ccwgyaGI.s:110    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/cckm6Pyi.s:673    .debug_str:000000000000005c .LASF7
+     /tmp/cckm6Pyi.s:699    .debug_str:000000000000013d .LASF8
+     /tmp/cckm6Pyi.s:711    .debug_str:000000000000025a .LASF9
+     /tmp/cckm6Pyi.s:661    .debug_str:000000000000000d .LASF10
+     /tmp/cckm6Pyi.s:663    .debug_str:000000000000001b .LASF11
+     /tmp/cckm6Pyi.s:705    .debug_str:0000000000000227 .LASF12
+     /tmp/cckm6Pyi.s:667    .debug_str:0000000000000031 .LASF13
+     /tmp/cckm6Pyi.s:715    .debug_str:0000000000000271 .LASF14
+     /tmp/cckm6Pyi.s:685    .debug_str:00000000000000cc .LASF15
+     /tmp/cckm6Pyi.s:697    .debug_str:0000000000000127 .LASF16
+     /tmp/cckm6Pyi.s:691    .debug_str:00000000000000f8 .LASF17
+     /tmp/cckm6Pyi.s:721    .debug_str:00000000000002a6 .LASF18
+     /tmp/cckm6Pyi.s:689    .debug_str:00000000000000e6 .LASF19
+     /tmp/cckm6Pyi.s:709    .debug_str:0000000000000244 .LASF20
+     /tmp/cckm6Pyi.s:683    .debug_str:00000000000000c3 .LASF21
+     /tmp/cckm6Pyi.s:719    .debug_str:0000000000000296 .LASF28
+     /tmp/cckm6Pyi.s:717    .debug_str:0000000000000281 .LASF29
+     /tmp/cckm6Pyi.s:74     .text:0000000000000038 .LFB1
+     /tmp/cckm6Pyi.s:104    .text:000000000000005c .LFE1
+     /tmp/cckm6Pyi.s:707    .debug_str:0000000000000236 .LASF30
+     /tmp/cckm6Pyi.s:677    .debug_str:0000000000000076 .LASF31
+     /tmp/cckm6Pyi.s:10     .text:0000000000000000 .LFB0
+     /tmp/cckm6Pyi.s:68     .text:0000000000000038 .LFE0
+     /tmp/cckm6Pyi.s:695    .debug_str:0000000000000120 .LASF22
+     /tmp/cckm6Pyi.s:630    .debug_loc:0000000000000000 .LLST0
+     /tmp/cckm6Pyi.s:679    .debug_str:0000000000000097 .LASF23
+     /tmp/cckm6Pyi.s:669    .debug_str:0000000000000041 .LASF24
+     /tmp/cckm6Pyi.s:14     .text:0000000000000000 .LVL0
+     /tmp/cckm6Pyi.s:56     .text:0000000000000028 .LVL1
+     /tmp/cckm6Pyi.s:110    .debug_info:0000000000000000 .Ldebug_info0
 
 NO UNDEFINED SYMBOLS

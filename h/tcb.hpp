@@ -12,7 +12,7 @@
 class TCB
 {
 public:
-    ~TCB() { delete[] stack; }
+    ~TCB() { if (stack!= nullptr) delete[] stack; }
 
     bool isFinished() const { return finished; }
 
