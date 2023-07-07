@@ -7,6 +7,7 @@
 #include "../lib/console.h"
 #include "../h/syscall_c.hpp"
 #include "../h/print.hpp"
+#include "../lib/mem.h"
 
 void Riscv::popSppSpie()
 {
@@ -58,6 +59,20 @@ void Riscv::handleSupervisorTrap()
 
 
         }else if (CODE == SCALL_THREAD_DISPATCH){
+            TCB::timeSliceCounter=0;
+            TCB::dispatch();
+
+        }else if (CODE==MEM_ALLOC){
+            void* re = __mem_alloc(arg1);
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(re));
+
+        }else if (CODE==MEM_FREE){
+            void* tmp = (void*) arg1;
+            rett = __mem_free(tmp);
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
+        }else if (CODE==SCALL_THREAD_EXIT){
+            TCB::running->setFinished(true);
             TCB::timeSliceCounter=0;
             TCB::dispatch();
 

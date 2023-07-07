@@ -28,3 +28,39 @@ void thread_dispatch() {
     __asm__ volatile ("ecall");
 
 }
+
+void *mem_alloc(size_t size) {
+
+    __asm__ volatile ("mv a1,%0" : : "r"(size));
+    __asm__ volatile ("mv a0, %0" : : "r" (MEM_ALLOC));
+    __asm__ volatile ("ecall");
+
+
+    void* retp;
+    __asm__ volatile ("mv %0, a0" : "=r" (retp));
+
+    return retp;
+}
+
+int mem_free(void * address) {
+    __asm__ volatile ("mv a1,%0" : : "r"(address));
+    __asm__ volatile ("mv a0, %0" : : "r" (MEM_FREE));
+    __asm__ volatile ("ecall");
+
+
+    int retValue;
+    __asm__ volatile ("mv %0,a0" :  "=r" (retValue));
+
+    return  retValue;
+}
+
+int thread_exit() {
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_THREAD_EXIT));
+    __asm__ volatile ("ecall");
+
+
+    int retValue;
+    __asm__ volatile ("mv %0,a0" :  "=r" (retValue));
+
+    return  retValue;
+}
