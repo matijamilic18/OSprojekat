@@ -13,12 +13,10 @@ class Scheduler
 {
 private:
     static List<TCB> readyThreadQueue;
-
 public:
     static TCB *get();
 
     static void put(TCB *ccb);
-
 };
 
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_SCHEDULER_HPP

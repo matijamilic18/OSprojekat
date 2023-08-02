@@ -64,3 +64,10 @@ int thread_exit() {
 
     return  retValue;
 }
+
+void thread_join(thread_t handle) {
+    __asm__ volatile ("mv a1, %0" : : "r" (handle));
+
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_THREAD_JOIN));
+    __asm__ volatile ("ecall");
+}

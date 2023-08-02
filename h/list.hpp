@@ -18,7 +18,8 @@ private:
     };
 
     Elem *head, *tail;
-
+    Elem* iterator = nullptr;
+    int size=0;
 public:
     List() : head(0), tail(0) {}
 
@@ -26,11 +27,30 @@ public:
 
     List<T> &operator=(const List<T> &) = delete;
 
+    void first () {
+        iterator=head;
+    }
+    int next () {
+        if (iterator==tail){
+            return -1;
+        }
+        iterator=iterator->next;
+        return 0;
+    }
+    T* getIter(){
+        return  iterator->data;
+    }
+
+    void removeIter(){
+
+    }
     void addFirst(T *data)
     {
         Elem *elem = new Elem(data, head);
         head = elem;
+        iterator = elem;
         if (!tail) { tail = head; }
+        size++;
     }
 
     void addLast(T *data)
@@ -44,6 +64,7 @@ public:
         {
             head = tail = elem;
         }
+        size++;
     }
 
     T *removeFirst()
@@ -56,6 +77,7 @@ public:
 
         T *ret = elem->data;
         delete elem;
+        size--;
         return ret;
     }
 
@@ -82,6 +104,7 @@ public:
 
         T *ret = elem->data;
         delete elem;
+        size--;
         return ret;
     }
 
@@ -90,6 +113,8 @@ public:
         if (!tail) { return 0; }
         return tail->data;
     }
+
+    int getSize(){return size;}
 };
 
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_LIST_HPP

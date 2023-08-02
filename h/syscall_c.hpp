@@ -12,6 +12,7 @@ const uint16 MEM_FREE = 0x02;
 const uint16 SCALL_THREAD_CREATE = 0x11;
 const uint16 SCALL_THREAD_EXIT = 0x12;
 const uint16 SCALL_THREAD_DISPATCH= 0x13;
+const uint16 SCALL_THREAD_JOIN = 0x14;
 
 class TCB;
 typedef TCB* thread_t;
@@ -21,6 +22,7 @@ int thread_exit();
 
 void thread_dispatch();
 
+void thread_join (thread_t handle);
 
 void* mem_alloc(size_t size);
 

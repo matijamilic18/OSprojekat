@@ -26,6 +26,10 @@ public:
 
     static void yield();
 
+    void block (TCB* thread);
+
+    void unblock ();
+
     static TCB *running;
 
 private:
@@ -54,6 +58,8 @@ private:
     uint64 timeSlice;
     bool finished;
 
+
+    List<TCB> blockedQueue;
     friend class Riscv;
 
     static void threadWrapper();

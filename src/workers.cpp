@@ -5,6 +5,9 @@
 #include "../lib/hw.h"
 #include "../h/tcb.hpp"
 #include "../h/print.hpp"
+#include "../h/syscall_c.hpp"
+
+extern thread_t handle1;
 
 void workerBodyA()
 {
@@ -59,6 +62,7 @@ void workerBodyC()
         printString("\n");
     }
 
+    thread_join(handle1);
     printString("C: yield\n");
     __asm__ ("li t1, 7");
     TCB::yield();

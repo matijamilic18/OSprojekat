@@ -10,6 +10,7 @@ TCB *TCB::running = nullptr;
 
 uint64 TCB::timeSliceCounter = 0;
 
+
 TCB *TCB::createThread(Body body, void* arg)
 {
     return new TCB(body,arg, TIME_SLICE);
@@ -36,5 +37,19 @@ void TCB::threadWrapper()
     Riscv::popSppSpie();
     running->body(running->arg);
     running->setFinished(true);
+    running->unblock();
     TCB::yield();
+}
+
+void TCB::block(TCB *thread) {
+
+    blockedQueue.addLast(thread);
+}
+
+void TCB::unblock() {
+    while(blockedQueue.getSize()>0){
+        TCB* t=blockedQueue.removeFirst();
+        Scheduler::put(t);
+    }
+
 }

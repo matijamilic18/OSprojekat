@@ -7,6 +7,7 @@
 #include "../h/print.hpp"
 #include "../h/riscv.hpp"
 #include "../h/syscall_c.hpp"
+thread_t handle1;
 void main()
 {
     Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
@@ -26,7 +27,7 @@ void main()
     printString("ThreadD created\n");
 
     Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
-
+    handle1 = threads[1];
 
    while (!(threads[1]->isFinished() &&
              threads[2]->isFinished() &&

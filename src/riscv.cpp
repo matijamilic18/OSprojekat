@@ -76,6 +76,14 @@ void Riscv::handleSupervisorTrap()
             TCB::timeSliceCounter=0;
             TCB::dispatch();
 
+        }else if (CODE== SCALL_THREAD_JOIN){
+            TCB* p= TCB::running;
+            TCB* target = (TCB*) arg1;
+            bool l= p->isFinished();
+            TCB::running->setFinished(true);
+            target->block(p);
+            TCB::dispatch();
+            p->setFinished(l);
         }
 
 
