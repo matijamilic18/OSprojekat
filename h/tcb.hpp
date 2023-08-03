@@ -30,6 +30,10 @@ public:
 
     void unblock ();
 
+    void setBlocked (bool val){ blocked=val;}
+
+    bool isBlocked () {return blocked;}
+
     static TCB *running;
 
 private:
@@ -41,7 +45,8 @@ private:
                      stack != nullptr ? (uint64) &stack[STACK_SIZE] : 0
                     }),
             timeSlice(timeSlice),
-            finished(false)
+            finished(false),
+            blocked(false)
     {
         if (body != nullptr) { Scheduler::put(this); }
     }
@@ -57,6 +62,7 @@ private:
     Context context;
     uint64 timeSlice;
     bool finished;
+    bool blocked;
 
 
     List<TCB> blockedQueue;

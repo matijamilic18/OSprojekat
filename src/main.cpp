@@ -7,13 +7,15 @@
 #include "../h/print.hpp"
 #include "../h/riscv.hpp"
 #include "../h/syscall_c.hpp"
+#include "../h/_sem.hpp"
 thread_t handle1;
+_sem* newsem;
 void main()
 {
     Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
 
     TCB *threads[5];
-
+    newsem=new _sem(0);
     thread_create(&threads[0], nullptr, nullptr);
     TCB::running = threads[0];
 

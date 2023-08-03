@@ -6,9 +6,10 @@
 #include "../h/tcb.hpp"
 #include "../h/print.hpp"
 #include "../h/syscall_c.hpp"
+#include "../h/_sem.hpp"
 
 extern thread_t handle1;
-
+extern _sem* newsem;
 void workerBodyA()
 {
     for (uint64 i = 0; i < 10; i++)
@@ -43,6 +44,7 @@ void workerBodyB()
 //            TCB::yield();
         }
     }
+    newsem->signal();
 }
 
 static uint64 fibonacci(uint64 n)
@@ -61,8 +63,7 @@ void workerBodyC()
         printInteger(i);
         printString("\n");
     }
-
-    thread_join(handle1);
+    newsem->wait();
     printString("C: yield\n");
     __asm__ ("li t1, 7");
     TCB::yield();
