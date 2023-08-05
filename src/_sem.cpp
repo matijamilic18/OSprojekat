@@ -53,3 +53,7 @@ void _sem::deblock() {
 _sem::~_sem() {
     close();
 }
+
+_sem *_sem::createSem(int initVal) {
+    return new _sem(initVal);
+}
