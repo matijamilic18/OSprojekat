@@ -21,7 +21,7 @@ public:
     int close();
     int value() const   {return val;};
 
-    _sem* createSem(int initVal);
+    static _sem* createSem(int initVal);
     ~_sem();
 protected:
     void block();

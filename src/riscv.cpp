@@ -8,6 +8,7 @@
 #include "../h/syscall_c.hpp"
 #include "../h/print.hpp"
 #include "../lib/mem.h"
+#include "../h/_sem.hpp"
 
 void Riscv::popSppSpie()
 {
@@ -84,6 +85,45 @@ void Riscv::handleSupervisorTrap()
             target->block(p);
             TCB::dispatch();
             p->setFinished(l);
+        }else if (CODE==SCALL_SEM_OPEN){
+
+            sem_t* handle_sem = (sem_t*) arg1;
+            uint64 init = arg2;
+
+            if (handle_sem != nullptr){
+                *handle_sem=_sem::createSem(init);
+                rett=0;
+            }else {
+                rett=-1;
+            }
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
+        }else if (CODE==SCALL_SEM_CLOSE){
+            sem_t handle_sem = (sem_t) arg1;
+            if (handle_sem!= nullptr){
+                rett=(*handle_sem).close();
+            }else{
+                rett= -1;
+            }
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
+        }else if (CODE== SCALL_SEM_WAIT){
+            sem_t id = (sem_t) arg1;
+            if (id!= nullptr){
+                rett=(*id).wait();
+            }else{
+                rett=-1;
+            }
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
+        }else if (CODE==SCALL_SEM_SIGNAL){
+            sem_t id = (sem_t) arg1;
+            if (id!= nullptr){
+                rett=(*id).signal();
+            }else{
+                rett=-1;
+            }
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
         }
 
 

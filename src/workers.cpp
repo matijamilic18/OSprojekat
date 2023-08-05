@@ -44,7 +44,7 @@ void workerBodyB()
 //            TCB::yield();
         }
     }
-    newsem->signal();
+    sem_signal(newsem);
 }
 
 static uint64 fibonacci(uint64 n)
@@ -63,7 +63,7 @@ void workerBodyC()
         printInteger(i);
         printString("\n");
     }
-    newsem->wait();
+    sem_wait(newsem);
     printString("C: yield\n");
     __asm__ ("li t1, 7");
     TCB::yield();

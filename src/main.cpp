@@ -15,7 +15,7 @@ void main()
     Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
 
     TCB *threads[5];
-    newsem=new _sem(0);
+    sem_open(&newsem, 0);
     thread_create(&threads[0], nullptr, nullptr);
     TCB::running = threads[0];
 
