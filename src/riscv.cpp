@@ -151,6 +151,10 @@ void Riscv::handleSupervisorTrap()
 
         // interrupt: yes; cause code: supervisor software interrupt (CLINT; machine timer interrupt)
         TCB::timeSliceCounter++;
+        if (sleepingThreadsList.peek()==0){
+            sleepingThreadsList.removeFinished();
+        }
+        sleepingThreadsList.dec();
         if (TCB::running != nullptr && TCB::timeSliceCounter >= TCB::running->getTimeSlice())
         {
             TCB::timeSliceCounter=0;

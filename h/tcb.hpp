@@ -51,7 +51,8 @@ private:
                     }),
             timeSlice(timeSlice),
             finished(false),
-            blocked(false)
+            blocked(false),
+            sleeping(false)
     {
         if (body != nullptr) { Scheduler::put(this); }
     }
