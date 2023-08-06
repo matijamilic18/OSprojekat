@@ -123,3 +123,16 @@ int sem_signal(sem_t id) {
 
     return  retValue;
 }
+
+int time_sleep(time_t time) {
+    __asm__ volatile ("mv a1, %0" : : "r" (time));
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_SEM_SIGNAL));
+
+
+    __asm__ volatile ("ecall");
+
+    int retValue;
+    __asm__ volatile ("mv %0,a0" :  "=r" (retValue));
+
+    return  retValue;
+}

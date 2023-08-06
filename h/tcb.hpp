@@ -34,7 +34,12 @@ public:
 
     bool isBlocked () {return blocked;}
 
+    void setSleeping (bool val){sleeping=val;}
+
+    bool isSleeping() {return sleeping;}
+
     static TCB *running;
+
 
 private:
     TCB(Body body, void* arg,uint64 timeSlice) :
@@ -63,6 +68,7 @@ private:
     uint64 timeSlice;
     bool finished;
     bool blocked;
+    bool sleeping;
 
 
     List<TCB> blockedQueue;

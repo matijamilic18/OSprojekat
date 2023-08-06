@@ -24,7 +24,7 @@ void TCB::yield()
 void TCB::dispatch()
 {
     TCB *old = running;
-    if (!old->isFinished()&& !old->isBlocked()) { Scheduler::put(old); }
+    if (!old->isFinished()&& !old->isBlocked()&& !old->isSleeping()) { Scheduler::put(old); }
     running = Scheduler::get();
 
     TCB::contextSwitch(&old->context, &running->context);

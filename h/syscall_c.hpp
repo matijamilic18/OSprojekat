@@ -17,6 +17,7 @@ const uint16 SCALL_SEM_OPEN = 0x21;
 const uint16 SCALL_SEM_CLOSE = 0x22;
 const uint16 SCALL_SEM_WAIT = 0x23;
 const uint16 SCALL_SEM_SIGNAL = 0x24;
+const uint16 SCALL_TIME_SLEEP = 0x31;
 
 class TCB;
 typedef TCB* thread_t;
@@ -43,6 +44,10 @@ int sem_close (sem_t handle);
 int sem_wait (sem_t id);
 
 int sem_signal (sem_t id);
+
+typedef unsigned long time_t;
+
+int time_sleep(time_t time);
 
 
 

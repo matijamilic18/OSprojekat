@@ -9,6 +9,9 @@
 #include "../h/print.hpp"
 #include "../lib/mem.h"
 #include "../h/_sem.hpp"
+#include "../h/sleeping_threads_list.hpp"
+
+sleeping_threads_list sleepingThreadsList;
 
 void Riscv::popSppSpie()
 {
@@ -124,6 +127,14 @@ void Riscv::handleSupervisorTrap()
                 rett=-1;
             }
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+        }else if (CODE == SCALL_TIME_SLEEP){
+            time_t vreme= (time_t)arg1;
+            sleepingThreadsList.put(TCB::running,vreme);
+            TCB::running->setSleeping(true);
+            TCB::dispatch();
+            rett=0;
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
+
         }
 
 
