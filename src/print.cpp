@@ -2,6 +2,7 @@
 // Created by marko on 20.4.22..
 //
 
+#include "../h/syscall_c.hpp"
 #include "../h/print.hpp"
 #include "../h/riscv.hpp"
 #include "../lib/console.h"
@@ -11,7 +12,7 @@ void printString(char const *string)
 
     while (*string != '\0')
     {
-        __putc(*string);
+        putc(*string);
         string++;
     }
 }
@@ -42,5 +43,5 @@ void printInteger(uint64 integer)
     if (neg)
         buf[i++] = '-';
 
-    while (--i >= 0) { __putc(buf[i]); }
+    while (--i >= 0) { putc(buf[i]); }
 }

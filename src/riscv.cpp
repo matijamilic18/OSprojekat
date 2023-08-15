@@ -10,8 +10,12 @@
 #include "../lib/mem.h"
 #include "../h/_sem.hpp"
 #include "../h/sleeping_threads_list.hpp"
+#include "../h/doubleBuffer.hpp"
+#include "../h/buffer.hpp"
 
 sleeping_threads_list sleepingThreadsList;
+extern buffer* getCBuffer;
+extern buffer* putCBuffer;
 
 void Riscv::popSppSpie()
 {
@@ -135,6 +139,12 @@ void Riscv::handleSupervisorTrap()
             rett=0;
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
 
+        }else if (CODE == SCALL_GETC){
+            char c = getCBuffer->get();
+            __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(c));
+        }else if (CODE == SCALL_PUTC){
+            char c = (char) arg1;
+            putCBuffer->put(c);
         }
 
 

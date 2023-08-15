@@ -6,7 +6,8 @@
 #include "../h/syscall_c.hpp"
 
 int _sem::wait() {
-    if (--val<0){
+    val--;
+    if (val<0){
         block();
     }
     if (!closed){

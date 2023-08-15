@@ -27,7 +27,7 @@ void TCB::dispatch()
     if (!old->isFinished()&& !old->isBlocked()&& !old->isSleeping()) { Scheduler::put(old); }
     running = Scheduler::get();
 
-    TCB::contextSwitch(&old->context, &running->context);
+    if(old!=running)TCB::contextSwitch(&old->context, &running->context);
 
 
 }

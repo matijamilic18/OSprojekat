@@ -18,6 +18,8 @@ const uint16 SCALL_SEM_CLOSE = 0x22;
 const uint16 SCALL_SEM_WAIT = 0x23;
 const uint16 SCALL_SEM_SIGNAL = 0x24;
 const uint16 SCALL_TIME_SLEEP = 0x31;
+const uint16 SCALL_GETC = 0x41;
+const uint16 SCALL_PUTC = 0x42;
 
 class TCB;
 typedef TCB* thread_t;
@@ -48,6 +50,13 @@ int sem_signal (sem_t id);
 typedef unsigned long time_t;
 
 int time_sleep(time_t time);
+
+
+const int EOF = -1;
+
+char getc();
+
+void putc (char);
 
 
 

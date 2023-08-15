@@ -136,3 +136,23 @@ int time_sleep(time_t time) {
 
     return  retValue;
 }
+
+char getc() {
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_GETC));
+
+
+    __asm__ volatile ("ecall");
+
+    char retValue;
+    __asm__ volatile ("mv %0,a0" :  "=r" (retValue));
+
+    return  retValue;
+}
+
+void putc(char c) {
+    __asm__ volatile ("mv a1, %0" : : "r" (c));
+    __asm__ volatile ("mv a0, %0" : : "r" (SCALL_PUTC));
+
+
+    __asm__ volatile ("ecall");
+}
