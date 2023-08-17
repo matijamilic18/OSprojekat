@@ -12,6 +12,7 @@
 #include "../h/sleeping_threads_list.hpp"
 #include "../h/doubleBuffer.hpp"
 #include "../h/buffer.hpp"
+#include "../h/MemoryAllocator.hpp"
 
 sleeping_threads_list sleepingThreadsList;
 extern buffer* getCBuffer;
@@ -71,12 +72,12 @@ void Riscv::handleSupervisorTrap()
             TCB::dispatch();
 
         }else if (CODE==MEM_ALLOC){
-            void* re = __mem_alloc(arg1);
+            void* re = MemoryAllocator::getInstance().mem_alloc(arg1);
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(re));
 
         }else if (CODE==MEM_FREE){
             void* tmp = (void*) arg1;
-            rett = __mem_free(tmp);
+            rett = MemoryAllocator::getInstance().mem_free(tmp);
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
 
         }else if (CODE==SCALL_THREAD_EXIT){
