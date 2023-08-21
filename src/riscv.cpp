@@ -13,6 +13,7 @@
 #include "../h/doubleBuffer.hpp"
 #include "../h/buffer.hpp"
 #include "../h/MemoryAllocator.hpp"
+#include "../h/MatijaMilic.hpp"
 
 sleeping_threads_list sleepingThreadsList;
 extern buffer* getCBuffer;
@@ -72,6 +73,7 @@ void Riscv::handleSupervisorTrap()
             TCB::dispatch();
 
         }else if (CODE==MEM_ALLOC){
+
             void* re = MemoryAllocator::getInstance().mem_alloc(arg1);
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(re));
 
@@ -133,7 +135,7 @@ void Riscv::handleSupervisorTrap()
             }
             __asm__ volatile ("sd %0, 10*8(fp)" :: "r"(rett));
         }else if (CODE == SCALL_TIME_SLEEP){
-            time_t vreme= (time_t)arg1;
+            int vreme= arg1;
             sleepingThreadsList.put(TCB::running,vreme);
             TCB::running->setSleeping(true);
             TCB::dispatch();
@@ -162,7 +164,7 @@ void Riscv::handleSupervisorTrap()
 
         // interrupt: yes; cause code: supervisor software interrupt (CLINT; machine timer interrupt)
         TCB::timeSliceCounter++;
-        if (sleepingThreadsList.peek()==0){
+        if (sleepingThreadsList.peek()<=0){
             sleepingThreadsList.removeFinished();
         }
         sleepingThreadsList.dec();
@@ -177,11 +179,15 @@ void Riscv::handleSupervisorTrap()
     else if (scause == 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        console_handler();
+        //console_handler();
+        int irq=plic_claim();
+        sem_signal(MatijaMilic::getInstance().getCSem);
+        sem_signal(MatijaMilic::getInstance().putCSem);
+        plic_complete(irq);
     }
     else
     {
-        __putc('g');
+        putc('g');
     }
     w_sepc(sepc);
     w_sstatus(sstatus);

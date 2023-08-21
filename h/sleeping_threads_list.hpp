@@ -14,7 +14,7 @@ public:
 
     sleeping_threads_list() : head(nullptr), tail(nullptr){}
 
-    void put(TCB* thread, time_t vreme){
+    void put(TCB* thread, int vreme){
         if (head){
             Elem* curr= head;
             Elem* prev= nullptr;
@@ -46,7 +46,9 @@ public:
     }
 
     void dec (){
-        if (head) head->relTime--;
+        if (head){
+            head->relTime--;
+        }
     }
 
     time_t peek(){
@@ -69,8 +71,8 @@ private:
     struct Elem{
         TCB* thread;
         Elem* next;
-        time_t relTime;
-        Elem(TCB* d, Elem* n, time_t t):thread(d),next(n),relTime(t){}
+        int relTime;
+        Elem(TCB* d, Elem* n, int t):thread(d),next(n),relTime((int)t){}
     };
 
 

@@ -6,7 +6,7 @@
 #include "../h/_sem.hpp"
 
 buffer::buffer(int kap) {
-    buff=new char[kap];
+
     head=0;tail=0;capacity=kap;size=0;
     itemAvailable= _sem::createSem(0);
     spaceAvailable =_sem::createSem(kap);
@@ -37,4 +37,9 @@ char buffer::get() {
     sem_signal(mutexGet);
     sem_signal(spaceAvailable);
     return c;
+}
+
+buffer::buffer() {
+    buffer(1024);
+
 }

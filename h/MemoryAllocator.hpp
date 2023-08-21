@@ -23,6 +23,8 @@ public:
     static MemoryAllocator& getInstance ();
 private:
     FreeMem* head= nullptr;
+    bool started=false;
+  //  MemoryAllocator();
 };
 
 

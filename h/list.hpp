@@ -27,31 +27,6 @@ public:
 
     List<T> &operator=(const List<T> &) = delete;
 
-    void first () {
-        iterator=head;
-    }
-    int next () {
-        if (iterator==tail){
-            return -1;
-        }
-        iterator=iterator->next;
-        return 0;
-    }
-    T* getIter(){
-        return  iterator->data;
-    }
-
-    void removeIter(){
-
-    }
-    void addFirst(T *data)
-    {
-        Elem *elem = new Elem(data, head);
-        head = elem;
-        iterator = elem;
-        if (!tail) { tail = head; }
-        size++;
-    }
 
     void addLast(T *data)
     {

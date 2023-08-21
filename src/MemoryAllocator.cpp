@@ -6,19 +6,21 @@
 
 void *MemoryAllocator::mem_alloc(size_t sz) {
     void* ret= nullptr;
-    if (!head){
-        head= (FreeMem *)((uint64 *) HEAP_START_ADDR);
+    if (!started){
+        started=true;
+        head= (FreeMem *)( HEAP_START_ADDR);
         head->next= nullptr;
         head->prev= nullptr;
-        head->size=((uint64)((uint64*)HEAP_END_ADDR-(uint64*)HEAP_START_ADDR)-sizeof(MemoryAllocator))/MEM_BLOCK_SIZE;
+        head->size=((uint64)HEAP_END_ADDR-(uint64)HEAP_START_ADDR)/MEM_BLOCK_SIZE;
     }
+
     for (FreeMem* cur=head;cur;cur=cur->next){
         if (sz<=cur->size){
 
             ret=cur;
             //ako ostane 1 ili vise blokova
             if (cur->size-sz>0){
-                FreeMem* neww= (FreeMem*)((uint64 *) cur + sz * MEM_BLOCK_SIZE);
+                FreeMem* neww= (FreeMem*)((uint64) cur + sz * MEM_BLOCK_SIZE);
                 if (cur->next){
                     cur->next->prev=neww;
                 }
@@ -49,7 +51,12 @@ void *MemoryAllocator::mem_alloc(size_t sz) {
 
         }
     }
-    return (uint64*)ret + sizeof(FreeMem);
+    if (ret){
+        return (FreeMem*)ret + 1;
+    }else{
+        return nullptr;
+    }
+
 }
 
 MemoryAllocator &MemoryAllocator::getInstance() {
@@ -65,7 +72,7 @@ int MemoryAllocator::mem_free(void *adr) {
     }else {
         for (cur = head; cur->next != nullptr && adr > (void *) cur->next; cur = cur->next);
     }
-        FreeMem* newSeg=(FreeMem*) ((uint64*) adr - sizeof(FreeMem));
+        FreeMem* newSeg=(FreeMem*) adr - 1;
 
         newSeg->prev=cur;
         if (cur) newSeg->next=cur->next;
@@ -81,7 +88,7 @@ int MemoryAllocator::mem_free(void *adr) {
 
 int MemoryAllocator::tryToJoin(FreeMem *cur) {
     if (!cur)return -1;
-    if (cur->next && (char*) (cur+cur->size*MEM_BLOCK_SIZE)== (char*)cur->next){
+    if (cur->next &&  (cur+cur->size)== cur->next){
         cur->size+=cur->next->size;
         cur->next = cur->next->next;
         if (cur->next) cur->next->prev = cur;
@@ -90,3 +97,8 @@ int MemoryAllocator::tryToJoin(FreeMem *cur) {
         return -1;
     }
 }
+
+/*MemoryAllocator::MemoryAllocator() {
+    head=(FreeMem*)HEAP_START_ADDR;
+
+}*/

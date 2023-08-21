@@ -7,7 +7,7 @@
 #include "../h/riscv.hpp"
 #include "../lib/console.h"
 
-void printString(char const *string)
+void printString2(char const *string)
 {
 
     while (*string != '\0')
@@ -17,7 +17,7 @@ void printString(char const *string)
     }
 }
 
-void printInteger(uint64 integer)
+void printInteger2(uint64 integer)
 {
 
     static char digits[] = "0123456789";

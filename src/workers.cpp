@@ -14,9 +14,9 @@ void workerBodyA()
 {
     for (uint64 i = 0; i < 10; i++)
     {
-        printString("A: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("A: i=");
+        printInteger2(i);
+        printString2("\n");
         for (uint64 j = 0; j < 10000; j++)
         {
             for (uint64 k = 0; k < 30000; k++)
@@ -35,9 +35,9 @@ void workerBodyB()
         if (i==14){
             time_sleep(20);
         }
-        printString("B: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("B: i=");
+        printInteger2(i);
+        printString2("\n");
         for (uint64 j = 0; j < 10000; j++)
         {
             for (uint64 k = 0; k < 30000; k++)
@@ -62,32 +62,32 @@ void workerBodyC()
     uint8 i = 0;
     for (; i < 3; i++)
     {
-        printString("C: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("C: i=");
+        printInteger2(i);
+        printString2("\n");
     }
 
-    printString("C: yield\n");
+    printString2("C: yield\n");
     __asm__ ("li t1, 7");
     TCB::yield();
 
     uint64 t1 = 0;
     __asm__ ("mv %[t1], t1" : [t1] "=r"(t1));
 
-    printString("C: t1=");
-    printInteger(t1);
-    printString("\n");
+    printString2("C: t1=");
+    printInteger2(t1);
+    printString2("\n");
 
     uint64 result = fibonacci(12);
-    printString("C: fibonaci=");
-    printInteger(result);
-    printString("\n");
+    printString2("C: fibonaci=");
+    printInteger2(result);
+    printString2("\n");
 
     for (; i < 6; i++)
     {
-        printString("C: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("C: i=");
+        printInteger2(i);
+        printString2("\n");
     }
 //    TCB::yield();
 }
@@ -97,26 +97,26 @@ void workerBodyD()
     uint8 i = 10;
     for (; i < 13; i++)
     {
-        printString("D: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("D: i=");
+        printInteger2(i);
+        printString2("\n");
     }
 
-    printString("D: yield\n");
+    printString2("D: yield\n");
     __asm__ ("li t1, 5");
     TCB::yield();
 
     uint64 result = fibonacci(16);
-    printString("D: fibonaci=");
-    printInteger(result);
-    printString("\n");
+    printString2("D: fibonaci=");
+    printInteger2(result);
+    printString2("\n");
     time_sleep(30);
 
     for (; i < 16; i++)
     {
-        printString("D: i=");
-        printInteger(i);
-        printString("\n");
+        printString2("D: i=");
+        printInteger2(i);
+        printString2("\n");
     }
 //    TCB::yield();
 }

@@ -11,13 +11,14 @@
 
 class buffer {
 public:
+    buffer();
     buffer(int kap);
     void put(char c);
     char get();
 private:
-    char* buff;
+    char buff[1024];
     int capacity;
-    static const uint16 KB_SIZE=256;
+    static const uint16 KB_SIZE=1024;
     sem_t itemAvailable,spaceAvailable, mutexPut,mutexGet;
     int head;
     int tail;

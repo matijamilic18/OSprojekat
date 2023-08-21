@@ -10,11 +10,13 @@
 #include "../h/_sem.hpp"
 #include "../h/doubleBuffer.hpp"
 #include "../h/buffer.hpp"
+#include "../h/MatijaMilic.hpp"
 
 thread_t handle1;
 _sem* newsem ;
 buffer* putCBuffer;
 buffer* getCBuffer;
+extern void userMain ();
 
 void idleThread(void*){
     while(true){
@@ -24,6 +26,7 @@ void idleThread(void*){
 
 void outputThread (void*){
     while (true){
+        sem_wait(MatijaMilic::getInstance().putCSem);
         while((*((char*)(CONSOLE_STATUS))& CONSOLE_TX_STATUS_BIT)){
             volatile char c= putCBuffer->get();
             *((char*) CONSOLE_TX_DATA) = c;
@@ -33,6 +36,8 @@ void outputThread (void*){
 
 void inputThread (void*){
     while (true){
+        sem_wait(MatijaMilic::getInstance().getCSem);
+
         while(*((char *)(CONSOLE_STATUS))&CONSOLE_RX_STATUS_BIT){
             volatile char c= (*(char*)CONSOLE_RX_DATA);
             getCBuffer->put(c);
@@ -57,31 +62,9 @@ void main()
 
     thread_create(&threads[2], outputThread, nullptr);
     thread_create(&threads[3], inputThread, nullptr);
-    thread_create(&threads[4], reinterpret_cast<void (*)(void *)>(workerBodyA), nullptr);
-    printString("ThreadA created\n");
-    thread_create(&threads[5], reinterpret_cast<void (*)(void *)>(workerBodyB), nullptr);
-    printString("ThreadB created\n");
-    thread_create(&threads[6], reinterpret_cast<void (*)(void *)>(workerBodyC), nullptr);
-    printString("ThreadC created\n");
-    thread_create(&threads[7], reinterpret_cast<void (*)(void *)>(workerBodyD), nullptr);
-    printString("ThreadD created\n");
-
-    Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
-    handle1 = threads[1];
-
-   while (!(threads[4]->isFinished() &&
-             threads[5]->isFinished() &&
-             threads[6]->isFinished() &&
-             threads[7]->isFinished()))
-    {
-        thread_dispatch();
-    }
-
-   for (int i=4;i<8;i++){
-       delete threads[i];
-   }
-
-    printString("Finished\n");
+    thread_t user;
+    thread_create(&user, reinterpret_cast<void (*)(void *)>(userMain), nullptr);
+    thread_join(user);
 
     return;
 
